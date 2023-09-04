@@ -15,4 +15,15 @@ router.get('/', async (req, res) => {
     )
 });
 
+router.get('/realtimeproducts', async (req, res) => {
+    res.render(
+        'realTimeProducts',
+        {
+            title: 'Productos',
+            style: 'index.css',
+            products: await ProductService.getAllProducts()
+        }
+    )
+});
+
 export default router;

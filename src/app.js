@@ -3,6 +3,8 @@ import handlebars from 'express-handlebars';
 import productRouter from './routes/productRouter.js';
 import viewsRouter from './routes/viewsRouter.js';
 import __dirname from './utils/constantsUtil.js';
+import {Server} from 'socket.io';
+import websocket from './websocket.js';
 
 const app = express();
 
@@ -21,6 +23,10 @@ app.use('/api/products', productRouter);
 app.use('/products', viewsRouter);
 
 const PORT = 8080;
-app.listen(PORT, () => {
+const httpServer = app.listen(PORT, () => {
     console.log(`Start server in PORT ${PORT}`);
 });
+
+const io = new Server(httpServer);
+
+websocket(io);
