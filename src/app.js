@@ -1,6 +1,7 @@
 import express from 'express';
 import handlebars from 'express-handlebars';
 import productRouter from './routes/productRouter.js';
+import cartRouter from './routes/cartRouter.js';
 import viewsRouter from './routes/viewsRouter.js';
 import __dirname from './utils/constantsUtil.js';
 import {Server} from 'socket.io';
@@ -20,6 +21,7 @@ app.use(express.static('public'));
 
 //Routers
 app.use('/api/products', productRouter);
+app.use('/api/carts', cartRouter);
 app.use('/products', viewsRouter);
 
 const PORT = 8080;
