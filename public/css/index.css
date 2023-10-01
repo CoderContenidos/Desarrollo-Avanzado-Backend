@@ -16,9 +16,11 @@ input {
     color: black;
 }
 
-button {
+button, .button {
     cursor: pointer;
     padding: 5px;
+    border-radius: 5px;
+    text-decoration: none;
 }
 
 .box {
@@ -52,10 +54,36 @@ button {
     margin-bottom: 5px;
 }
 
-#button-create {
+.footer {
+    margin-top: 10px;
+}
+
+.view-cart {
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 15px;
+}
+
+.view-products {
+    display: block;
+    position: absolute;
+    left: 10px;
+    top: 15px;
+}
+
+#button-create, #button-products {
     background: #1da81d;
 }
 
 #button-delete {
     background: #d51515;
+}
+
+#button-paginate {
+    background: #646464;
+}
+
+#button-cart {
+    background: #ffa500;
 }

@@ -1,4 +1,5 @@
 <div class="box">
+    <div class="view-cart"><a id="button-cart" class="button">Ver Carrito</a></div>
     <h1>Productos</h1>
     <div class="products-box">
         {{#each products}}
@@ -8,7 +9,18 @@
                 <p>Categoria: {{this.category}}</p>
                 <p>Descripción: {{this.description}}</p>
                 <p>Precio: $ {{this.price}}</p>
+                <button id="button-create" onclick="addToCart('{{this._id}}')">Agregar al Carrito</button>
             </div>
         {{/each}}
     </div>
+    <div class="footer">
+        {{#if prevLink.exist}}
+            <a id="button-paginate" class="button" href="{{prevLink.link}}">Anterior</a>
+        {{/if}}
+        {{#if nextLink.exist}}
+            <a id="button-paginate" class="button" href="{{nextLink.link}}">Siguiente</a>
+        {{/if}}
+    </div>
 </div>
+
+<script src="/js/ecommerce.js"></script>

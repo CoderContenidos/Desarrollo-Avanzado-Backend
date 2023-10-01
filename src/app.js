@@ -1,13 +1,18 @@
 import express from 'express';
 import handlebars from 'express-handlebars';
+import {Server} from 'socket.io';
+import mongoose from 'mongoose';
+
 import productRouter from './routes/productRouter.js';
 import cartRouter from './routes/cartRouter.js';
 import viewsRouter from './routes/viewsRouter.js';
 import __dirname from './utils/constantsUtil.js';
-import {Server} from 'socket.io';
 import websocket from './websocket.js';
 
 const app = express();
+
+const uri = 'mongodb://127.0.0.1:27017/entrega-final';
+mongoose.connect(uri);
 
 //Handlebars Config
 app.engine('handlebars', handlebars.engine());
@@ -22,7 +27,7 @@ app.use(express.static('public'));
 //Routers
 app.use('/api/products', productRouter);
 app.use('/api/carts', cartRouter);
-app.use('/products', viewsRouter);
+app.use('/', viewsRouter);
 
 const PORT = 8080;
 const httpServer = app.listen(PORT, () => {

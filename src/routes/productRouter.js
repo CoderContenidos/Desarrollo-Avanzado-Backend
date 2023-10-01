@@ -1,12 +1,12 @@
 import { Router } from 'express';
-import { productFSService } from '../services/productFSService.js';
+import { productDBService } from '../services/productDBService.js';
 import { uploader } from '../utils/multerUtil.js';
 
 const router = Router();
-const ProductService = new productFSService('products.json');
+const ProductService = new productDBService();
 
 router.get('/', async (req, res) => {
-    const result = await ProductService.getAllProducts();
+    const result = await ProductService.getAllProducts(req.query);
 
     res.send({
         status: 'success',
@@ -35,7 +35,7 @@ router.post('/', uploader.array('thumbnails', 3), async (req, res) => {
     if (req.files) {
         req.body.thumbnails = [];
         req.files.forEach((file) => {
-            req.body.thumbnails.push(file.filename);
+            req.body.thumbnails.push(file.path);
         });
     }
 
