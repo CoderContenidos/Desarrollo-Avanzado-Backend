@@ -28,12 +28,13 @@ router.get('/products', async (req, res) => {
 });
 
 router.get('/realtimeproducts', async (req, res) => {
+    const products = await ProductService.getAllProducts(req.query);
     res.render(
         'realTimeProducts',
         {
             title: 'Productos',
             style: 'index.css',
-            products: await ProductService.getAllProducts()
+            products: JSON.parse(JSON.stringify(products.docs))
         }
     )
 });
