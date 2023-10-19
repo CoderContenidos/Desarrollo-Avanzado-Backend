@@ -1,5 +1,5 @@
-import { productFSService } from "./services/productFSService.js";
-const ProductService = new productFSService('products.json');
+import { productDBService } from './services/productDBService.js';
+const ProductService = new productDBService();
 
 export default (io) => {
     io.on("connection", (socket) => {
@@ -8,8 +8,8 @@ export default (io) => {
 
             try {
                 await ProductService.createProduct(data);
-                const products = await ProductService.getAllProducts();
-                socket.emit("publishProducts", products);
+                const products = await ProductService.getAllProducts({});
+                socket.emit("publishProducts", products.docs);
             } catch (error) {
                 socket.emit("statusError", error.message);
             }
@@ -18,7 +18,8 @@ export default (io) => {
         socket.on("deleteProduct", async (data) => {
             try {
                 const result = await ProductService.deleteProduct(data.pid);
-                socket.emit("publishProducts", result);
+                const products = await ProductService.getAllProducts({});
+                socket.emit("publishProducts", products.docs);
             } catch (error) {
                 socket.emit("statusError", error.message);
             }
