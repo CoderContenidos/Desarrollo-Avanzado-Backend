@@ -36,7 +36,7 @@
                 <p>Categoria: {{this.category}}</p>
                 <p>Descripción: {{this.description}}</p>
                 <p>Precio: $ {{this.price}}</p>
-                <button id="button-delete" onclick="deleteProduct({{this.id}})">Eliminar</button>
+                <button id="button-delete" onclick="deleteProduct('{{this._id}}')">Eliminar</button>
             </div>
         {{/each}}
     </div>
