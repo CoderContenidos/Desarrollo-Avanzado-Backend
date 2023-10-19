@@ -20,7 +20,7 @@ socket.on('publishProducts', data => {
                     <p>Categoria: ${product.category}</p>
                     <p>Descripción: ${product.description}</p>
                     <p>Precio: $ ${product.price}</p>
-                    <button id="button-delete" onclick="deleteProduct(${product.id})">Eliminar</button>
+                    <button id="button-delete" onclick="deleteProduct('${product._id}')">Eliminar</button>
                 </div>`;
     });
 
