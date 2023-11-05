@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-class productFSService {
+class productManager {
     
     constructor(file) {
         this.file = file;
@@ -125,4 +125,4 @@ class productFSService {
     }
 }
 
-export { productFSService };
+export { productManager };

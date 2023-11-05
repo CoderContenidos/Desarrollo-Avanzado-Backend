@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { productFSService } from '../services/productFSService.js';
-import { cartFSService } from '../services/cartFSService.js';
+import { productManager } from '../managers/productManager.js';
+import { cartManager } from '../managers/cartManager.js';
 
 const router = Router();
-const ProductService = new productFSService('products.json');
-const CartService = new cartFSService('carts.json', ProductService);
+const ProductService = new productManager('products.json');
+const CartService = new cartManager('carts.json', ProductService);
 
 router.get('/:cid', async (req, res) => {
 
