@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { productDBService } from '../services/productDBService.js';
+import { productDBManager } from '../dao/productDBManager.js';
 import { uploader } from '../utils/multerUtil.js';
 
 const router = Router();
-const ProductService = new productDBService();
+const ProductService = new productDBManager();
 
 router.get('/', async (req, res) => {
     const result = await ProductService.getAllProducts(req.query);
