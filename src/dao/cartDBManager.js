@@ -1,9 +1,9 @@
-import { cartModel } from "../models/cartModel.js";
+import { cartModel } from "./models/cartModel.js";
 
-class cartDBService {
+class cartDBManager {
 
-    constructor(productDBService) {
-        this.productDBService = productDBService;
+    constructor(productDBManager) {
+        this.productDBManager = productDBManager;
     }
 
     async getAllCarts() {
@@ -23,7 +23,7 @@ class cartDBService {
     }
 
     async addProductByID(cid, pid) {
-        await this.productDBService.getProductByID(pid);
+        await this.productDBManager.getProductByID(pid);
 
         const cart = await cartModel.findOne({ _id: cid});
 
@@ -51,7 +51,7 @@ class cartDBService {
     }
 
     async deleteProductByID(cid, pid) {
-        await this.productDBService.getProductByID(pid);
+        await this.productDBManager.getProductByID(pid);
 
         const cart = await cartModel.findOne({ _id: cid});
 
@@ -69,7 +69,7 @@ class cartDBService {
 
         //Validate if exist products
         for (let key in products) {
-            await this.productDBService.getProductByID(products[key].product);
+            await this.productDBManager.getProductByID(products[key].product);
         }
 
         await cartModel.updateOne({ _id: cid }, { products: products });
@@ -81,7 +81,7 @@ class cartDBService {
 
         if (!quantity || isNaN(parseInt(quantity))) throw new Error(`La cantidad ingresada no es válida!`);
 
-        await this.productDBService.getProductByID(pid);
+        await this.productDBManager.getProductByID(pid);
 
         const cart = await cartModel.findOne({ _id: cid});
 
@@ -112,4 +112,4 @@ class cartDBService {
     }
 }
 
-export { cartDBService };
+export { cartDBManager };

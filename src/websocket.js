@@ -1,5 +1,5 @@
-import { productDBService } from './services/productDBService.js';
-const ProductService = new productDBService();
+import { productDBManager } from './dao/productDBManager.js';
+const ProductService = new productDBManager();
 
 export default (io) => {
     io.on("connection", (socket) => {
